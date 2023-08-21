@@ -16,6 +16,13 @@ tar czfv "/root/backup_$((`date +'%u'` % 2)).tar.gz" /root/backup/**
 
 
 # upload everything via ftp
+sed -i "s/FTP_HOST/${FTP_HOST}/g" /root/lftp-script
+sed -i "s/FTP_HOST/${FTP_HOST}/g" /root/lftp-ls-script
+sed -i "s/FTP_USER/${FTP_USER}/g" /root/lftp-script
+sed -i "s/FTP_USER/${FTP_USER}/g" /root/lftp-ls-script
+sed -i "s/FTP_PASS/${FTP_PASS}/g" /root/lftp-script
+sed -i "s/FTP_PASS/${FTP_PASS}/g" /root/lftp-ls-script
+
 cat /root/lftp-script
 
 lftp -f /root/lftp-script

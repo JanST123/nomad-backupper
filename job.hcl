@@ -58,7 +58,7 @@ job "backupper" {
 
       
       config {
-        image = "ghcr.io/janst123/nomad-backupper:0.0.1"
+        image = "ghcr.io/janst123/nomad-backupper:0.0.2"
       }
 
       

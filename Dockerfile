@@ -9,12 +9,5 @@ COPY entrypoint.sh /root/entrypoint.sh
 
 RUN chmod +x /root/entrypoint.sh
 
-RUN sed -i "s/FTP_HOST/${FTP_HOST}/g" /root/lftp-script
-RUN sed -i "s/FTP_HOST/${FTP_HOST}/g" /root/lftp-ls-script
-RUN sed -i "s/FTP_USER/${FTP_USER}/g" /root/lftp-script
-RUN sed -i "s/FTP_USER/${FTP_USER}/g" /root/lftp-ls-script
-RUN sed -i "s/FTP_PASS/${FTP_PASS}/g" /root/lftp-script
-RUN sed -i "s/FTP_PASS/${FTP_PASS}/g" /root/lftp-ls-script
-
 
 ENTRYPOINT [ "/root/entrypoint.sh" ]
