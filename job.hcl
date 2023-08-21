@@ -58,7 +58,8 @@ job "backupper" {
 
       
       config {
-        image = "+++"
+        image = "ghcr.io/janst123/nomad-backupper:latest"
+        force_pull = true
       }
 
       

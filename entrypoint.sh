@@ -16,5 +16,7 @@ tar czfv "/root/backup_$((`date +'%u'` % 2)).tar.gz" /root/backup/**
 
 
 # upload everything via ftp
+cat /root/lftp-script
+
 lftp -f /root/lftp-script
 

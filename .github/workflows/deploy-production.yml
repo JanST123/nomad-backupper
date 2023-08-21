@@ -27,4 +27,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/janst123/nomad-backupper:latest
+          tags: ghcr.io/janst123/nomad-backupper:${{github.ref_name}}
