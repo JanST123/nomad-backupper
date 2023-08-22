@@ -37,6 +37,7 @@ then
   sed -i "s/SMTP_HOST/${SMTP_HOST}/g" /etc/ssmtp/ssmtp.conf
   sed -i "s/SMTP_USER/${SMTP_USER}/g" /etc/ssmtp/ssmtp.conf
   sed -i "s/SMTP_PASS/${SMTP_PASS}/g" /etc/ssmtp/ssmtp.conf
-  sed -i "s/MONITORING_EMAIL/${MONITORING_EMAIL}/g" /root/lftp-ls-script
+  sed -i "s/localhost/`hostname`/g" /etc/ssmtp/ssmtp.conf
+  sed -i "s/MONITORING_EMAIL/${MONITORING_EMAIL}/g" /root/monitor.sh
   ./monitor.sh
 fi

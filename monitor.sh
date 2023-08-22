@@ -23,7 +23,7 @@ while read line ; do
 
    if [[ "$FILENAME" =~ ^backup_[01]\.tar\.gz$ ]]
    then
-   	if [ $FILENAME = $TODAYS_FILENAME ] 
+   	if [[ $FILENAME = $TODAYS_FILENAME ]]
    	then
    		  FILESIZE_TODAY=`echo $line | awk '{print $5}'`
 		  FILEAGE_TODAY=$((`date '+%s'` - $FILEDATE_UNIX))
@@ -36,7 +36,7 @@ done <<< "$(echo -e "$FTP_OUTPUT")"
 
 
 # if we don't have found sizes for both backup files we exit here
-if [ -z $FILESIZE_TODAY ] || [ -z $FILESIZE_YESTERDAY ]
+if [[ -z $FILESIZE_TODAY ]] || [[ -z $FILESIZE_YESTERDAY ]]
 then
 	echo "Did not found both files"
 	sendMail "WARNING" "Did not found two backup files. This is okay, if the backupper runs for the first time or you switched to a new backup location"
@@ -44,14 +44,14 @@ then
 fi
 
 # if todays backup file is older than 12hrs something went wrong
-if [ $AGE_TODAY -gt 43200 ]
+if [[ $AGE_TODAY -gt 43200 ]]
 then
 	sendMail "ERROR" "Age of todays backup file is ${AGE_TODAY} seconds, therefore it seems the backup has not been run"
 	exit;
 fi
 
 # if yesterdays backup is older than 30hrs or younger than 20hrs something went also wrong
-if [ $AGE_YESTERDAY -gt 108000 ] || [ $AGE_YESTERDAY -lt 72000 ]
+if [[ $AGE_YESTERDAY -gt 108000 ]] || [[ $AGE_YESTERDAY -lt 72000 ]]
 then
 	sendMail "ERROR" "Age of yesterdays backup file is ${AGE_YESTERDAY} seconds, therefor it seems yesterdays backup did not run or there is some mismatch with the filenames (could happen on first/last day of a switching-year)"
 	exit;
@@ -65,7 +65,7 @@ DIFFERENCE_INT=`awk '{print int($1)}' <<< $DIFFERENCE`
 
 
 # warn if difference between todays and yesterdays backup is more than 5%
-if [ $DIFFERENCE_INT -gt 5 ] || [ $DIFFERENCE_INT -lt -5 ]
+if [[ $DIFFERENCE_INT -gt 5 ]] || [[ $DIFFERENCE_INT -lt -5 ]]
 then
 	SUBJECT_PREFIX="LARGE DIFFERENCE"
 else
@@ -73,7 +73,7 @@ else
 fi
 
 DIFF_PREFIX='+';
-if [ $DIFFERENCE_INT -lt 0 ] 
+if [[ $DIFFERENCE_INT -lt 0 ]] 
 then 
 	DIFF_PREFIX = '-' 
 fi
