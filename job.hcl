@@ -3,17 +3,6 @@ variable "mariadb_root_pw" {
   description = "Root PW MariaDB"
 }
 
-variable "github_token" {
-  type = string
-  description = "GitHub token to take a backup"
-  default = ""
-}
-
-variable "github_account" {
-  type = string
-  description = "GitHub account name to backup"
-  default = ""
-}
 
 variable "ftp_host" {
   type = string
@@ -30,12 +19,50 @@ variable "ftp_pass" {
   description = "pass of ftp to backup to"
 }
 
+variable "ftp_dir" {
+  type = string
+  description = "directory where the data should be uploaded to"
+  default = "/"
+}
+
+variable "github_token" {
+  type = string
+  description = "GitHub token to take a backup"
+  default = ""
+}
+
+variable "github_account" {
+  type = string
+  description = "GitHub account name to backup"
+  default = ""
+}
+
+variable "monitoring_email" {
+  type = string
+  description ="set your email adress if you want to receive emails about backup monitoring"
+}
+
+variable "smtp_host" {
+  type = string
+  description ="set the host of your smtp server if you want to receive emails about backup monitoring"
+}
+
+variable "smtp_user" {
+  type = string
+  description ="set the auth user of your smtp server if you want to receive emails about backup monitoring"
+}
+
+variable "smtp_pass" {
+  type = string
+  description ="set password of your smtp server if you want to receive emails about backup monitoring"
+}
+
 job "backupper" {
   datacenters = ["dc1"]
   type = "batch" 
 
   periodic {
-    cron             = "0 5 * * * *"
+    cron             = "0 3 * * * *"
     prohibit_overlap = true
   }
 
@@ -54,11 +81,16 @@ job "backupper" {
         "FTP_HOST" = var.ftp_host
         "FTP_USER" = var.ftp_user
         "FTP_PASS" = var.ftp_pass
+        "FTP_DIR" = var.ftp_dir
+        "MONITORING_EMAIL" = var.monitoring_email
+        "SMTP_HOST" = var.smtp_host
+        "SMTP_USER" = var.smtp_user
+        "SMTP_PASS" = var.smtp_pass
       }
 
       
       config {
-        image = "ghcr.io/janst123/nomad-backupper:0.0.2"
+        image = "ghcr.io/janst123/nomad-backupper:0.0.3"
       }
 
       

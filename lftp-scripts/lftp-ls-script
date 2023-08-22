@@ -1,6 +1,6 @@
 set ftp:ssl-force true
 set ssl:verify-certificate no
 open FTP_USER:FTP_PASS@FTP_HOST
-cd server2
+cd FTP_DIR
 ls
 close
