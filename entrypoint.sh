@@ -34,9 +34,9 @@ lftp -f /root/lftp-script
 # check if everything worked well
 if [ "$MONITORING_EMAIL" != "" ] && [ "$SMTP_HOST" != "" ] && [ "$SMTP_USER" != "" ] && [ "$SMTP_PASS" != "" ]
 then
-  sed -if s/SMTP_HOST/${SMTP_HOST}/g" /etc/ssmtp/ssmtp.conf
-  sed -if s/SMTP_USER/${SMTP_USER}/g" /etc/ssmtp/ssmtp.conf
-  sed -if s/SMTP_PASS/${SMTP_PASS}/g" /etc/ssmtp/ssmtp.conf
+  sed -i "s/SMTP_HOST/${SMTP_HOST}/g" /etc/ssmtp/ssmtp.conf
+  sed -i "s/SMTP_USER/${SMTP_USER}/g" /etc/ssmtp/ssmtp.conf
+  sed -i "s/SMTP_PASS/${SMTP_PASS}/g" /etc/ssmtp/ssmtp.conf
   sed -i "s/MONITORING_EMAIL/${MONITORING_EMAIL}/g" /root/lftp-ls-script
   ./monitor.sh
 fi
