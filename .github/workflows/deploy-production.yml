@@ -27,4 +27,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/janst123/nomad-backupper:0.0.6
+          tags: ghcr.io/janst123/nomad-backupper:0.0.7

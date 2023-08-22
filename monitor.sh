@@ -25,11 +25,11 @@ while read line ; do
    then
    	if [[ $FILENAME = $TODAYS_FILENAME ]]
    	then
-   		  FILESIZE_TODAY=`echo $line | awk '{print $5}'`
-		  FILEAGE_TODAY=$((`date '+%s'` - $FILEDATE_UNIX))
+         FILESIZE_TODAY=`echo $line | awk '{print $5}'`
+         FILEAGE_TODAY=$((`date '+%s'` - $FILEDATE_UNIX))
    	else
-   		  FILESIZE_YESTERDAY=`echo $line | awk '{print $5}'`
-		  FILEAGE_YESTERDAY=$((`date '+%s'` - $FILEDATE_UNIX))
+         FILESIZE_YESTERDAY=`echo $line | awk '{print $5}'`
+		   FILEAGE_YESTERDAY=$((`date '+%s'` - $FILEDATE_UNIX))
    	fi
    fi	
 done <<< "$(echo -e "$FTP_OUTPUT")"
@@ -44,14 +44,14 @@ then
 fi
 
 # if todays backup file is older than 12hrs something went wrong
-if [[ $AGE_TODAY -gt 43200 ]]
+if [[ $FILEAGE_TODAY -gt 43200 ]]
 then
-	sendMail "ERROR" "Age of todays backup file is ${AGE_TODAY} seconds, therefore it seems the backup has not been run"
+	sendMail "ERROR" "Age of todays backup file is ${FILEAGE_TODAY} seconds, therefore it seems the backup has not been run"
 	exit;
 fi
 
 # if yesterdays backup is older than 30hrs or younger than 20hrs something went also wrong
-if [[ $AGE_YESTERDAY -gt 108000 ]] || [[ $AGE_YESTERDAY -lt 72000 ]]
+if [[ $FILEAGE_YESTERDAY -gt 108000 ]] || [[ $FILEAGE_YESTERDAY -lt 72000 ]]
 then
 	sendMail "ERROR" "Age of yesterdays backup file is ${AGE_YESTERDAY} seconds, therefor it seems yesterdays backup did not run or there is some mismatch with the filenames (could happen on first/last day of a switching-year)"
 	exit;
