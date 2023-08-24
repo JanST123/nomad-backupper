@@ -62,6 +62,7 @@ fi
 # calculate difference in percent
 DIFFERENCE=`awk '{print ($1/$2*100)-100}' <<<"${FILESIZE_TODAY} ${FILESIZE_YESTERDAY}"`
 DIFFERENCE_INT=`awk '{print int($1)}' <<< $DIFFERENCE`
+DIFFERENCE_BYTE=`awk '{print ($1-$2}' <<<"${FILESIZE_TODAY} ${FILESIZE_YESTERDAY}"`
 
 
 # warn if difference between todays and yesterdays backup is more than 5%
@@ -78,4 +79,4 @@ then
 	DIFF_PREFIX = '-' 
 fi
 
-sendMail $SUBJECT_PREFIX "`printf "Backup was done and the new file size is $(( $FILESIZE_TODAY / 1025 / 1024 ))MB ${DIFF_PREFIX}${DIFFERENCE}%%"`"
+sendMail $SUBJECT_PREFIX "`printf "Backup was done and the new file size is $(( $FILESIZE_TODAY / 1024 / 1024 ))MB\n${DIFF_PREFIX}$(( $DIFFERENCE_BYTE / 1024 / 1024 ))MB\n${DIFF_PREFIX}${DIFFERENCE}%%"`"
