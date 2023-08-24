@@ -62,7 +62,7 @@ fi
 # calculate difference in percent
 DIFFERENCE=`awk '{print ($1/$2*100)-100}' <<<"${FILESIZE_TODAY} ${FILESIZE_YESTERDAY}"`
 DIFFERENCE_INT=`awk '{print int($1)}' <<< $DIFFERENCE`
-DIFFERENCE_BYTE=`awk '{print ($1-$2}' <<<"${FILESIZE_TODAY} ${FILESIZE_YESTERDAY}"`
+DIFFERENCE_BYTE=`awk '{print ($1-$2)}' <<<"${FILESIZE_TODAY} ${FILESIZE_YESTERDAY}"`
 
 
 # warn if difference between todays and yesterdays backup is more than 5%
