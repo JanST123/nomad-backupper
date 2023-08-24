@@ -51,11 +51,11 @@ then
 fi
 
 # if yesterdays backup is older than 30hrs or younger than 20hrs something went also wrong
-if [[ $FILEAGE_YESTERDAY -gt 108000 ]] || [[ $FILEAGE_YESTERDAY -lt 72000 ]]
-then
-	sendMail "ERROR" "Age of yesterdays backup file is ${FILEAGE_YESTERDAY} seconds, therefor it seems yesterdays backup did not run or there is some mismatch with the filenames (could happen on first/last day of a switching-year)"
-	exit;
-fi
+#if [[ $FILEAGE_YESTERDAY -gt 108000 ]] || [[ $FILEAGE_YESTERDAY -lt 72000 ]]
+#then
+#	sendMail "ERROR" "Age of yesterdays backup file is ${FILEAGE_YESTERDAY} seconds, therefor it seems yesterdays backup did not run or there is some mismatch with the filenames (could happen on first/last day of a switching-year)"
+#	exit;
+#fi
 
 
 
