@@ -79,4 +79,4 @@ then
 	DIFF_PREFIX = '-' 
 fi
 
-sendMail $SUBJECT_PREFIX "`printf "Backup was done and the new file size is $(( $FILESIZE_TODAY / 1024 / 1024 ))MB\n${DIFF_PREFIX}$(( $DIFFERENCE_BYTE / 1024 / 1024 ))MB\n${DIFF_PREFIX}${DIFFERENCE}%%"`"
+sendMail "$SUBJECT_PREFIX" "`printf "Backup was done and the new file size is $(( $FILESIZE_TODAY / 1024 / 1024 ))MB\n${DIFF_PREFIX}$(( $DIFFERENCE_BYTE / 1024 / 1024 ))MB\n${DIFF_PREFIX}${DIFFERENCE}%%"`"
