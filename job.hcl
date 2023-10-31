@@ -72,6 +72,10 @@ job "backupper" {
     task "backupper" {
       driver = "docker"
 
+      resources {
+        memory = 500
+      }
+
       env = {
         // MARIADB_DATABASE_HOSTNAME will be set by service detection
         // MARIADB_DATABASE_PORT will be set by service detection
